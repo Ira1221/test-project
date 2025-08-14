@@ -1,5 +1,10 @@
 # test-project
-This project was created for educational purposes to practice automated testing using Playwright.
+This project was created for educational purposes to practice automated testing.
 Reviewed a login test with valid credentials.
-To install Playwright, run the command 'npm init playwright@latest'.
-To run an autotest, you need to run the command 'npx playwright test'.
+For an already created repository you should use:
+
+npm install
+npx playwright install
+
+To run an autotest, you need to run the command:
+npx playwright test
