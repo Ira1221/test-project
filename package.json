@@ -1,0 +1,24 @@
+{
+  "name": "test-project",
+  "version": "1.0.0",
+  "description": "test",
+  "homepage": "https://github.com/Ira1221/test-project#readme",
+  "bugs": {
+    "url": "https://github.com/Ira1221/test-project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ira1221/test-project.git"
+  },
+  "license": "ISC",
+  "author": "Me",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^24.2.1"
+  }
+}
