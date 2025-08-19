@@ -15,10 +15,21 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "lint": "npx eslint . --fix",
+    "type-check": "tsc --noEmit",
+    "report": "playwright show-report"
   },
   "devDependencies": {
+    "@eslint/js": "^9.33.0",
     "@playwright/test": "^1.54.2",
-    "@types/node": "^24.2.1"
+    "@types/node": "^24.2.1",
+    "eslint": "^9.33.0",
+    "eslint-plugin-playwright": "^2.2.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1"
   }
 }

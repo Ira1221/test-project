@@ -1,4 +1,6 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices, Locator, Page } from '@playwright/test';
+import { baseConfig } from './config/baseConfig';
+require('dotenv').config();
 
 /**
  * Read environment variables from file.
@@ -31,8 +33,12 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
     headless: false,
+    testIdAttribute: 'data-test',
   },
-
+    timeout: 15_000,
+    expect: {
+      timeout: 15_000,
+    },
   /* Configure projects for major browsers */
   projects: [
     {
@@ -46,4 +52,6 @@ export default defineConfig({
     // },
   ],
 
-});
+ });
+
+

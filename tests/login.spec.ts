@@ -1,21 +1,27 @@
 import { test, expect } from '@playwright/test';
+import { baseConfig } from '../config/baseConfig';
+import { ApplicationPage } from '../pages/app.page';
 
-const users = {
-  standardUser: {
-    login: 'customer@practicesoftwaretesting.com',
-    password: 'welcome01'
-  }
-}
 
-users.standardUser.login
-test('Login  with valid credentials', async ({ page }) => {
-  await page.goto('https://practicesoftwaretesting.com/auth/login');
-  await page.locator('[data-test="email"]').fill(users.standardUser.login);
-  await page.locator('[data-test="password"]').fill(users.standardUser.password);
-  await page.locator('[data-test="login-submit"]').click();
-  await expect(page).toHaveURL('https://practicesoftwaretesting.com/account');
-  await expect(page.locator('[data-test="page-title"]')).toBeVisible();
-  await expect(page.locator('[data-test="nav-menu"]')).toBeVisible();
-   
-  
+test('verify login as a user with valid credentials', async ({ page }) => {
+  const app = new ApplicationPage(page);
+
+ 
+
+  await app.login.open('/auth/login');
+  await app.login.loginAs(baseConfig.USER_EMAIL, baseConfig.USER_PASSWORD);
+
+
+  await expect(page).toHaveURL(/\/account$/);
+
+  await expect(
+    app.account.pageTitle,
+    'Account page title is not visible',
+  ).toHaveText('My account');
+
+ 
+  await expect(
+    app.account.header.navMenu,
+    'User name is not visible',
+  ).toHaveText(baseConfig.USER_NAME);
 });
