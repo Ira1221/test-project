@@ -1,6 +1,7 @@
-import { defineConfig, devices, Locator, Page } from '@playwright/test';
-import { baseConfig } from './config/baseConfig';
-require('dotenv').config();
+import { defineConfig, devices } from '@playwright/test';
+
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * Read environment variables from file.

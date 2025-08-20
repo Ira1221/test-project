@@ -2,15 +2,15 @@ import { Locator } from '@playwright/test';
 import { BasePage } from './base.page';
 
 export class HomePage extends BasePage {
-readonly productsCard: Locator = this.page.getByTestId(/product/);
+  readonly productsCard: Locator = this.page.getByTestId(/product/);
 
 async openProduct(productName: string): Promise<void> {
     await this.productsCard.filter({ hasText: productName }).first().click();
 }
 
 async getProductDetails(productName: string): Promise<{
-    title:string;
-    price:string;
+    title: string;
+    price: string;
 }> {
   const productLocator = this.productsCard.filter({ hasText: productName }).first();
 

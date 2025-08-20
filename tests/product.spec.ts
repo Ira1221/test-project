@@ -19,10 +19,12 @@ const app = new ApplicationPage(page);
 
   await expect(page).toHaveURL(/.*\/product\/.*/);
 
+  await expect(app.productDetailsPage.productName).toBeVisible();
   await expect(
     app.productDetailsPage.productName,
     'Product name is not visible',
   ).toHaveText(productDetails.title);
+   await expect(app.productDetailsPage.productPrice).toBeVisible();
   await expect(
     app.productDetailsPage.productPrice,
     'Product price is not visible',
