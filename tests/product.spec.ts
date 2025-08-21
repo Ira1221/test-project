@@ -12,6 +12,10 @@ const app = new ApplicationPage(page);
 
   await expect(app.home.productsCard).not.toHaveCount(0);
 
+  for (const card of await app.home.productsCard.all()) {
+    await expect(card, 'Product card is not visible').toBeVisible();
+  }
+
   const productDetails = await app.home.getProductDetails(productTitle);
 
   await app.home.openProduct(productTitle);

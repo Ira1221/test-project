@@ -26,25 +26,13 @@ export default tseslint.config(
   },
     {
      ...playwright.configs['flat/recommended'],
-    files: ['tests/**'],
+    files: ['tests/**', 'pages/**', 'components/**'],
     rules: {
        ...playwright.configs['flat/recommended'].rules,
       // Customize Playwright rules
       // ...
     },
   },
-  {
-  files: ['pages/**', 'components/**'],
-  languageOptions: {
-    parserOptions: {
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-  rules: {
-    '@typescript-eslint/no-explicit-any': 'warn',
-    '@typescript-eslint/no-floating-promises': 'error',
-    
-  },
-}
+
 
 );
