@@ -42,9 +42,13 @@ export default defineConfig({
     },
   /* Configure projects for major browsers */
   projects: [
+      { name: 'perform-login', testMatch: /auth-setup\.spec\.ts/ },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        storageState: 'playwright/.auth/user.json',
+        ...devices['Desktop Chrome'] },
+      dependencies: ['perform-login'],
     },
 
     // {
