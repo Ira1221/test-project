@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 import { AccountPage } from './account.page';
 import { LoginPage } from './login.page';
 import { HomePage } from './home.page';
-import { productDetailsPage } from './productDetails.page';
+import { ProductDetailsPage } from './productDetails.page';
 
 export class ApplicationPage {
     private readonly page: Page;
@@ -10,13 +10,13 @@ export class ApplicationPage {
     readonly home: HomePage;
     readonly login: LoginPage;
     readonly account: AccountPage;
-    readonly productDetailsPage: productDetailsPage;
+    readonly ProductDetailsPage: ProductDetailsPage;
 
     constructor(page: Page) {
         this.page = page;
         this.home = new HomePage(this.page);
         this.login = new LoginPage(this.page);
         this.account = new AccountPage(this.page);
-        this.productDetailsPage = new productDetailsPage(this.page);
+        this.ProductDetailsPage = new ProductDetailsPage(this.page);
     }
 }
