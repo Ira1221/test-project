@@ -1,25 +1,34 @@
 
 import { test, expect } from '@playwright/test';
+import { baseConfig } from '../config/baseConfig';
+import { ApplicationPage } from '../pages/app.page';
 import path from 'path';
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 
 
-test('Verify successful login', async ({ page }) => {
-  await page.goto('https://practicesoftwaretesting.com/');
 
 
+test('verify login as a user with valid credentials', async ({ page }) => {
+  const app = new ApplicationPage(page);
 
-const signInBtn = page.locator('[data-test="nav-sign-in"]');
-  await expect(signInBtn).toBeVisible();
-  await signInBtn.click();
+ 
+
+  await app.login.open('/auth/login');
+  await app.login.loginAs(baseConfig.USER_EMAIL, baseConfig.USER_PASSWORD);
 
 
-  await page.locator('[data-test="email"]').fill('Havhav17@gmail.com');
-  await page.locator('[data-test="password"]').fill('Havhav17@gmail.com');
-  await page.locator('[data-test="login-submit"]').click();
+  await expect(page).toHaveURL(/\/account$/);
 
-  await expect(page).toHaveURL('https://practicesoftwaretesting.com/account');
+  await expect(
+    app.account.pageTitle,
+    'Account page title is not visible',
+  ).toHaveText('My account');
 
+ 
+  await expect(
+    app.account.header.navMenu,
+    'User name is not visible',
+  ).toHaveText(baseConfig.USER_NAME);
   await page.context().storageState({path: authFile});
 });

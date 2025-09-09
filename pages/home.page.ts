@@ -12,9 +12,8 @@ export class HomePage extends BasePage {
 
   
   async open(): Promise<void> {
-    await this.page.goto('https://practicesoftwaretesting.com/');
+    await this.page.goto('/');
   }
-
 
   async openCart(): Promise<void> {
     await this.cartIcon.click();

@@ -2,9 +2,10 @@ import { Locator, expect } from '@playwright/test';
 import { BasePage } from './base.page';
 
 export class CheckoutPage extends BasePage {
-  readonly cartTableRows: Locator = this.page.locator('[data-test="cart-table"] tbody tr');
-  readonly productTitleInCart: Locator = this.page.locator('[data-test="product-title"]');
-  readonly proceedToCheckoutButton: Locator = this.page.locator('[data-test="proceed-to-checkout"]');
+  readonly cartTableRows: Locator = this.page.getByTestId('cart-table').locator('tbody tr');
+  readonly productTitleInCart: Locator = this.page.getByTestId('product-title');
+  readonly proceedToCheckoutButton: Locator = this.page.getByTestId('proceed-to-checkout');
+  
 
   async verifyUrl(): Promise<void> {
     await expect(this.page).toHaveURL(/\/checkout/);

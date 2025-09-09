@@ -7,10 +7,10 @@ const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 test.use({storageState: authFile});
 
 
-test('Verify successful login', async ({ page }) => {
-  await page.goto('https://practicesoftwaretesting.com');
+test('verify login as a user with valid credentials', async ({ page }) => {
+  await page.goto('/');
 
-  await expect(page.locator('[data-test="nav-menu"]')).toContainText('Olha havhav');
+  await expect(page.locator('[data-test="nav-menu"]')).toContainText('Jane Doe');
 
 });
 
