@@ -10,7 +10,7 @@ test.use({storageState: authFile});
 test('verify login as a user with valid credentials', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.locator('[data-test="nav-menu"]')).toContainText('Jane Doe');
+  await expect(page.getByTestId('nav-menu')).toContainText('Jane Doe');
 
 });
 

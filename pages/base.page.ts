@@ -15,7 +15,7 @@ async open(url:string): Promise<void> {
 }
 
 get cartQuantity(): Locator {
-    return this.page.locator('[data-test="cart-quantity"]');
+    return this.page.getByTestId('cart-quantity');
   }
 }
 

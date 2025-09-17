@@ -4,11 +4,11 @@ import { Category } from './categories.enum';
 
 export class HomePage extends BasePage {
   readonly productsCard: Locator = this.page.getByTestId(/product/);
-  readonly sortDropdown: Locator = this.page.locator('[data-test="sort"]');
-  readonly searchSubmit: Locator = this.page.locator('[data-test="search-submit"]');
-  readonly productNames: Locator = this.page.locator('[data-test="product-name"]');
-  readonly productPrices: Locator = this.page.locator('[data-test="product-price"]');
-  readonly cartIcon: Locator = this.page.locator('[data-test="nav-cart"]');
+  readonly sortDropdown: Locator = this.page.getByTestId('sort');
+  readonly searchSubmit: Locator = this.page.getByTestId('search-submit');
+  readonly productNames: Locator = this.page.getByTestId('product-name');
+  readonly productPrices: Locator = this.page.getByTestId('product-price');
+  readonly cartIcon: Locator = this.page.getByTestId('nav-cart');
 
   
   async open(): Promise<void> {
@@ -51,9 +51,9 @@ export class HomePage extends BasePage {
 
   async getProductList(type: 'name' | 'price'): Promise<(string | number)[]> {
   if (type === 'name') {
-    return await this.page.locator('.product-name').allTextContents();
+    return await this.page.getByTestId('.product-name').allTextContents();
   } else if (type === 'price') {
-    const prices = await this.page.locator('.product-price').allTextContents();
+    const prices = await this.page.getByTestId('.product-price').allTextContents();
     return prices.map(p => parseFloat(p.replace('$', '').trim()));
   } else {
     throw new Error(`Unsupported sort type: ${type}`);
