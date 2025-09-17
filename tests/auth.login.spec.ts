@@ -1,0 +1,18 @@
+
+import { test, expect } from '@playwright/test';
+import path from 'path';
+
+const authFile = path.join(__dirname, '../playwright/.auth/user.json');
+
+test.use({storageState: authFile});
+
+
+test('verify login as a user with valid credentials', async ({ page }) => {
+  await page.goto('/');
+
+  await expect(page.getByTestId('nav-menu')).toContainText('Jane Doe');
+
+});
+
+
+

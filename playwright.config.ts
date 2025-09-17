@@ -29,7 +29,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-     baseURL: 'https://practicesoftwaretesting.com/auth/login',
+     baseURL: 'https://practicesoftwaretesting.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
@@ -42,9 +42,13 @@ export default defineConfig({
     },
   /* Configure projects for major browsers */
   projects: [
+      { name: 'perform-login', testMatch: /auth-setup\.spec\.ts/ },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        storageState: 'playwright/.auth/user.json',
+        ...devices['Desktop Chrome'] },
+      dependencies: ['perform-login'],
     },
 
     // {
